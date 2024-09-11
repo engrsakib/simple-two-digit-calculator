@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+  <body>
+    <div class="container mx-auto mt-11 space-y-2">
+      <div>
+        <label for="number1">Number1</label>
+        <input
+          id="number1"
+          type="text"
+          placeholder="Type here"
+          class="input input-bordered input-secondary w-full max-w-xs"
+        />
+      </div>
+
+      <div>
+        <label for="number2">Number2</label>
+        <input
+          id="number2"
+          type="text"
+          placeholder="Type here"
+          class="input input-bordered input-secondary w-full max-w-xs"
+        />
+      </div>
+
+      <div class="container mx-auto">
+        <button id="add" class="btn btn-success">+</button>
+        <button id="subtract" class="btn btn-success">-</button>
+        <button id="multiply" class="btn btn-success">X</button>
+        <button id="divide" class="btn btn-success">/</button>
+      </div>
+
+      <div class="mt-4">
+        <label for="result">Result</label>
+        <input
+          id="result"
+          type="text"
+          readonly
+          class="input input-bordered input-secondary w-full max-w-xs"
+        />
+      </div>
+    </div>
+
+    <script>
+      document.getElementById('add').addEventListener('click', function() {
+        calculate('+');
+      });
+      document.getElementById('subtract').addEventListener('click', function() {
+        calculate('-');
+      });
+      document.getElementById('multiply').addEventListener('click', function() {
+        calculate('*');
+      });
+      document.getElementById('divide').addEventListener('click', function() {
+        calculate('/');
+      });
+
+      function calculate(operation) {
+        const num1 = parseFloat(document.getElementById('number1').value);
+        const num2 = parseFloat(document.getElementById('number2').value);
+        let result;
+
+        if (isNaN(num1) || isNaN(num2)) {
+          alert('Please enter valid numbers');
+          return;
+        }
+
+        switch (operation) {
+          case '+':
+            result = num1 + num2;
+            break;
+          case '-':
+            result = num1 - num2;
+            break;
+          case '*':
+            result = num1 * num2;
+            break;
+          case '/':
+            if (num2 === 0) {
+              alert('Cannot divide by zero');
+              return;
+            }
+            result = num1 / num2;
+            break;
+        }
+
+        document.getElementById('result').value = result;
+      }
+    </script>
+  </body>
+</html>
